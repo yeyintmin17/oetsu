@@ -1,0 +1,364 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+    /* font-family */
+    --brand-ff: 'Caesar Dressing', cursive;
+
+    /* color */
+    --body-color: #252525;
+    --active-color: #EDEA96;
+    --non-active-color: #C2CCC8;
+    --sneaker-color: #C7867A;
+}
+
+body{
+    @apply overflow-hidden;
+    background-color: var(--body-color);
+}
+
+#main-container{
+    @apply h-screen;
+}
+
+#main-container > #nav-section,
+#main-container > #container-section{
+    @apply px-16 py-4;
+}
+
+/* Start Nav Section */
+
+#nav-section.navbar{
+    @apply flex justify-between items-center;
+    height: 80px;
+    background-color: var(--body-color);
+}
+
+#nav-section.navbar > *{
+    @apply relative z-10;
+}
+
+#nav-section .navbar-brand{
+    font-family: var(--brand-ff);
+    font-size: 40px;
+    color: var(--active-color);
+    letter-spacing: 8px;
+}
+
+#nav-section .navbar-nav{
+    @apply space-x-5 flex;
+}
+
+#nav-section .nav-link{
+    @apply rounded-full
+        flex justify-center items-center
+        transition-transform duration-75 ease-linear;
+
+    width: 40px;
+    height: 40px;
+    background-color: var(--body-color);
+    color: var(--non-active-color);
+
+    font-size: 20px;
+}
+
+#nav-section .nav-link:hover{
+    color: var(--active-color);
+    transform: translateY(-10%);
+}
+
+/* End Nav Section */
+
+/* Start Container Section */
+
+#container-section{
+    @apply flex flex-row-reverse overflow-hidden;
+    height: calc(100vh - 80px);
+}
+
+#container-section > *{
+    @apply space-y-5
+        flex flex-col justify-center;
+}
+
+/* left container section */
+
+#left-container-section{
+    @apply w-4/5 items-end;
+}
+
+#left-container-section .show-sn-con{
+    @apply w-3/5
+        flex justify-center items-center
+        relative
+        translate-x-full
+        transition duration-500 ease-linear;
+}
+
+#left-container-section .show-sn-con.active{
+    @apply translate-x-0;
+}
+
+#left-container-section .show-sn-con .sn-img{
+    @apply w-3/5 
+        object-cover relative
+        origin-bottom
+        transition-transform duration-500 ease-linear delay-500;
+
+    z-index: 1;
+    transform: scale(0) rotateY(0turn);
+}
+
+#left-container-section .show-sn-con.active .sn-img{
+    transform: scale(1) rotateY(-1.5turn);
+}
+
+#left-container-section .show-sn-con .sn-sheet{
+    @apply w-4/5 h-4/5 rounded-full absolute;
+    background-color: var(--sneaker-color);
+    transform: rotate(-25deg);
+}
+
+#left-container-section .carousel-indicator-con{
+    @apply space-x-5 flex relative;
+    font-family: var(--brand-ff);
+    font-size: 20px;
+}
+
+#left-container-section .carousel-indicator-item{
+    @apply border-b-2 border-solid
+        cursor-pointer
+        flex justify-center items-center;
+    
+    width: 40px;
+    height: 40px;
+
+    color: var(--non-active-color);
+    border-bottom-color: var(--non-active-color);
+}
+
+#left-container-section .carousel-indicator-item.active{
+    color: var(--active-color);
+    border-bottom-color: var(--active-color);
+}
+
+#left-container-section .carousel-indicator-con .down-arr{
+    @apply absolute left-0 top-0;
+    color: var(--active-color);
+    margin: 0px !important;
+    transform: translateY(-100%);
+}
+
+/* right container section */
+
+#right-container-section{
+    @apply w-2/5;
+}
+
+#right-container-section .about-con .heading{
+    @apply text-white text-xl italic font-bold mb-4;
+    letter-spacing: 5px;
+}
+
+#right-container-section .about-con .para{
+    @apply w-4/5 leading-7;
+    color: var(--non-active-color);
+}
+
+#right-container-section .price-con .price{
+    @apply text-3xl font-black italic;
+    color: var(--sneaker-color);
+    text-shadow: -15px -15px 0 rgba(0, 0, 0, 0.1);
+}
+
+#right-container-section .price-con .buynow-btn{
+    @apply text-xs
+        font-semibold italic 
+        uppercase
+        px-6 py-2
+        border-2 border-solid rounded-full
+        mt-5;
+    color: var(--sneaker-color);
+    border-color: var(--sneaker-color);
+    letter-spacing: 2.5px;
+}
+
+#right-container-section .edit-con{
+    @apply text-white space-y-4;
+}
+
+#right-container-section .edit-con > *,
+#right-container-section .edit-con .edit-btn-con{
+    @apply flex items-center;
+}
+
+#right-container-section .edit-con .edit-btn-con{
+    @apply ml-5 space-x-4;
+}
+
+#right-container-section .edit-con .btn{
+    @apply text-xs font-bold rounded-full
+        flex justify-center items-center;
+
+    width: 20px;
+    height: 20px;
+    background-color: #333;
+}
+
+#right-container-section .size-con .size-num{
+    @apply text-xl font-extrabold ;
+}
+
+#right-container-section footer{
+    @apply text-xs space-y-1;
+    color: var(--non-active-color);
+}
+
+#right-container-section footer a{
+    @apply underline underline-offset-4;
+}
+
+#right-container-section footer a:hover{
+    color: var(--active-color);
+}
+
+/* End Container Section */
+
+@media(max-width: 768px){
+    /* Start Navbar Section */
+
+    #main-container > #nav-section,
+    #main-container > #container-section{
+        @apply px-8;
+    }
+
+    /* End Navbar Section */
+
+    /* Start Container Section */
+
+    #container-section{
+        @apply space-y-1 grid place-items-center;
+    }
+
+    #container-section > *{
+        @apply w-full;
+    }
+
+    /* left container section */
+
+    #left-container-section{
+        @apply items-start;
+    }
+    
+    #left-container-section .show-sn-con{
+        @apply self-center;
+    }
+
+    /* right container section */
+
+    /* End Container Section */
+}
+
+@media(max-width: 576px){
+    #main-container > #nav-section,
+    #main-container > #container-section{
+        @apply p-4;
+    }
+
+    /* Start Nav Section */
+
+    #nav-section.navbar{
+        height: 60px;
+    }
+
+    #nav-section .navbar-brand{
+        font-size: 30px;
+        letter-spacing: 4px;
+    }
+
+    #nav-section .navbar-nav{
+        @apply space-x-4;
+    }
+
+    #nav-section .nav-link{
+        width: 30px;
+        height: 30px;
+        font-size: 15px;
+    }
+
+    /* End Nav Section */
+
+    /* Start Container Section */
+
+    #container-section{
+        height: calc(100vh - 60px);
+    }
+
+    #cotainer-section > *{
+        @apply space-y-4;
+    }
+
+    /* left container section */
+
+    #left-container-section .show-sn-con{
+        width: 90%;
+    }
+
+    #left-container-section .carousel-indicator-con{
+        @apply space-x-4;
+        font-size: 15px;
+    }
+    
+    #left-container-section .carousel-indicator-item{
+        @apply border-b;
+        width: 30px;
+        height: 30px;
+    }
+
+    /* right container section */
+    
+    #right-container-section .about-con .heading{
+        @apply text-lg mb-2;
+        letter-spacing: 2.5px;
+    }
+    
+    #right-container-section .about-con .para{
+        @apply w-full text-sm leading-5;
+    }
+
+    #right-container-section .price-con .price{
+        @apply text-xl;
+        text-shadow: -5px -5px 0 rgba(0, 0, 0, 0.1);
+    }
+    
+    #right-container-section .price-con .buynow-btn{
+        @apply mt-3;
+        font-size: 10px;
+        letter-spacing: 1.5px;
+    }
+    
+    #right-container-section .edit-con{
+        @apply space-y-2;
+    }
+
+    #right-container-section .edit-con .para{
+        @apply text-sm;
+    }
+    
+    #right-container-section .edit-con .edit-btn-con{
+        @apply ml-5 space-x-4;
+    }
+    
+    #right-container-section .edit-con .btn{
+        width: 18px;
+        height: 18px;
+        font-size: 10px;
+    }
+    
+    #right-container-section .size-con .size-num{
+        @apply text-lg;
+    }
+
+    /* End Container Section */
+}
