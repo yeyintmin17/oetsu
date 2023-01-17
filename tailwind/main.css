@@ -14,12 +14,11 @@
 }
 
 body{
-    /* @apply overflow-hidden; */
     background-color: var(--body-color);
 }
 
 #main-container{
-    @apply h-screen;
+    @apply min-h-screen;
 }
 
 #main-container > #nav-section,
@@ -74,12 +73,12 @@ body{
 
 #container-section{
     @apply flex flex-row-reverse overflow-hidden;
-    height: calc(100vh - 80px);
+    min-height: calc(100vh - 80px);
 }
 
 #container-section > *{
-    @apply space-y-5
-        flex flex-col justify-center;
+    @apply space-y-5 my-auto
+        flex flex-col;
 }
 
 /* left container section */
@@ -130,7 +129,8 @@ body{
 #left-container-section .carousel-indicator-item{
     @apply border-b-2 border-solid
         cursor-pointer
-        flex justify-center items-center;
+        flex justify-center items-center
+        relative;
     
     width: 40px;
     height: 40px;
@@ -141,7 +141,18 @@ body{
 
 #left-container-section .carousel-indicator-item.active{
     color: var(--active-color);
-    border-bottom-color: var(--active-color);
+}
+
+#left-container-section .carousel-indicator-item::before{
+    --ci-item-bf-w: 0%;
+    @apply h-0.5
+        absolute left-0 bottom-0 translate-y-full;
+    content: '';
+    background-color: var(--active-color);
+}
+
+#left-container-section .carousel-indicator-item.active::before{
+    width: var(--ci-item-bf-w);
 }
 
 #left-container-section .carousel-indicator-con .down-arr{
@@ -244,7 +255,7 @@ body{
     }
 
     #container-section > *{
-        @apply w-full;
+        @apply w-full m-0;
     }
 
     /* left container section */
@@ -294,13 +305,13 @@ body{
     /* Start Container Section */
 
     #container-section{
-        height: calc(100vh - 60px);
+        min-height: calc(100vh - 60px);
     }
 
     /* left container section */
 
     #left-container-section .show-sn-con{
-        /* @apply w-4/5; */
+        @apply w-4/5;
     }
 
     #left-container-section .carousel-indicator-con{
@@ -312,6 +323,10 @@ body{
         @apply border-b;
         width: 30px;
         height: 30px;
+    }
+
+    #left-container-section .carousel-indicator-item::before{
+        @apply h-px;
     }
 
     /* right container section */

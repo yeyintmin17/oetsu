@@ -524,12 +524,11 @@ video {
 }
 
 body{
-  /* @apply overflow-hidden; */
   background-color: var(--body-color);
 }
 
 #main-container {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 #main-container > #nav-section,
@@ -601,13 +600,14 @@ body{
   display: flex;
   flex-direction: row-reverse;
   overflow: hidden;
-  height: calc(100vh - 80px);
+  min-height: calc(100vh - 80px);
 }
 
 #container-section > * {
+  margin-top: auto;
+  margin-bottom: auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 #container-section > * > :not([hidden]) ~ :not([hidden]) {
@@ -691,6 +691,7 @@ body{
 }
 
 #left-container-section .carousel-indicator-item {
+  position: relative;
   display: flex;
   cursor: pointer;
   align-items: center;
@@ -705,7 +706,22 @@ body{
 
 #left-container-section .carousel-indicator-item.active{
   color: var(--active-color);
-  border-bottom-color: var(--active-color);
+}
+
+#left-container-section .carousel-indicator-item::before{
+  --ci-item-bf-w: 0%;
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  height: 0.125rem;
+  --tw-translate-y: 100%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  content: '';
+  background-color: var(--active-color);
+}
+
+#left-container-section .carousel-indicator-item.active::before{
+  width: var(--ci-item-bf-w);
 }
 
 #left-container-section .carousel-indicator-con .down-arr {
@@ -869,6 +885,7 @@ body{
   }
 
   #container-section > * {
+    margin: 0px;
     width: 100%;
   }
 
@@ -921,13 +938,13 @@ body{
   /* Start Container Section */
 
   #container-section{
-    height: calc(100vh - 60px);
+    min-height: calc(100vh - 60px);
   }
 
   /* left container section */
 
-  #left-container-section .show-sn-con{
-    /* @apply w-4/5; */
+  #left-container-section .show-sn-con {
+    width: 80%;
   }
 
   #left-container-section .carousel-indicator-con > :not([hidden]) ~ :not([hidden]) {
@@ -944,6 +961,10 @@ body{
     border-bottom-width: 1px;
     width: 30px;
     height: 30px;
+  }
+
+  #left-container-section .carousel-indicator-item::before {
+    height: 1px;
   }
 
   /* right container section */
