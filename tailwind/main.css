@@ -10,11 +10,11 @@
     --body-color: #252525;
     --active-color: #EDEA96;
     --non-active-color: #C2CCC8;
-    --sneaker-color: #C7867A;
+    --sn-color: #C7867A;
 }
 
 body{
-    @apply overflow-hidden;
+    /* @apply overflow-hidden; */
     background-color: var(--body-color);
 }
 
@@ -91,37 +91,38 @@ body{
 #left-container-section .show-sn-con{
     @apply w-3/5
         flex justify-center items-center
-        relative
-        translate-x-full
-        transition duration-500 ease-linear;
+        relative opacity-0;
+
+    transform: translate(100%, -100%);
 }
 
 #left-container-section .show-sn-con.active{
-    @apply translate-x-0;
+    @apply opacity-100 translate-x-0
+        transition-transform duration-300 ease-linear;
 }
 
 #left-container-section .show-sn-con .sn-img{
     @apply w-3/5 
         object-cover relative
-        origin-bottom
-        transition-transform duration-500 ease-linear delay-500;
+        origin-bottom;
 
     z-index: 1;
     transform: scale(0) rotateY(0turn);
 }
 
 #left-container-section .show-sn-con.active .sn-img{
+    @apply transition-transform duration-500 ease-linear delay-150;
     transform: scale(1) rotateY(-1.5turn);
 }
 
 #left-container-section .show-sn-con .sn-sheet{
     @apply w-4/5 h-4/5 rounded-full absolute;
-    background-color: var(--sneaker-color);
+    background-color: var(--sn-color);
     transform: rotate(-25deg);
 }
 
 #left-container-section .carousel-indicator-con{
-    @apply space-x-5 flex relative;
+    @apply space-x-5 flex select-none relative;
     font-family: var(--brand-ff);
     font-size: 20px;
 }
@@ -144,10 +145,11 @@ body{
 }
 
 #left-container-section .carousel-indicator-con .down-arr{
-    @apply absolute left-0 top-0;
+    @apply absolute left-0 top-0
+        transition-all duration-100 ease-out;
     color: var(--active-color);
     margin: 0px !important;
-    transform: translateY(-100%);
+    transform: translate(-50%, -100%);
 }
 
 /* right container section */
@@ -168,7 +170,7 @@ body{
 
 #right-container-section .price-con .price{
     @apply text-3xl font-black italic;
-    color: var(--sneaker-color);
+    color: var(--sn-color);
     text-shadow: -15px -15px 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -179,8 +181,8 @@ body{
         px-6 py-2
         border-2 border-solid rounded-full
         mt-5;
-    color: var(--sneaker-color);
-    border-color: var(--sneaker-color);
+    color: var(--sn-color);
+    border-color: var(--sn-color);
     letter-spacing: 2.5px;
 }
 
@@ -198,7 +200,7 @@ body{
 }
 
 #right-container-section .edit-con .btn{
-    @apply text-xs font-bold rounded-full
+    @apply text-xs font-bold rounded-full select-none
         flex justify-center items-center;
 
     width: 20px;
@@ -295,14 +297,10 @@ body{
         height: calc(100vh - 60px);
     }
 
-    #cotainer-section > *{
-        @apply space-y-4;
-    }
-
     /* left container section */
 
     #left-container-section .show-sn-con{
-        width: 90%;
+        /* @apply w-4/5; */
     }
 
     #left-container-section .carousel-indicator-con{
@@ -317,33 +315,37 @@ body{
     }
 
     /* right container section */
+
+    #right-container-section{
+        @apply space-y-3;
+    }
     
     #right-container-section .about-con .heading{
-        @apply text-lg mb-2;
+        @apply text-base mb-1;
         letter-spacing: 2.5px;
     }
     
     #right-container-section .about-con .para{
-        @apply w-full text-sm leading-5;
+        @apply w-full text-xs leading-5;
     }
 
     #right-container-section .price-con .price{
-        @apply text-xl;
+        @apply text-lg;
         text-shadow: -5px -5px 0 rgba(0, 0, 0, 0.1);
     }
     
     #right-container-section .price-con .buynow-btn{
-        @apply mt-3;
+        @apply px-5 p-1.5 mt-2;
         font-size: 10px;
         letter-spacing: 1.5px;
     }
     
     #right-container-section .edit-con{
-        @apply space-y-2;
+        @apply space-y-1;
     }
 
     #right-container-section .edit-con .para{
-        @apply text-sm;
+        @apply text-xs;
     }
     
     #right-container-section .edit-con .edit-btn-con{
@@ -357,7 +359,7 @@ body{
     }
     
     #right-container-section .size-con .size-num{
-        @apply text-lg;
+        @apply text-base;
     }
 
     /* End Container Section */
