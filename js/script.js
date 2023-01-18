@@ -65,7 +65,7 @@ $(document).ready(function(){
 
     // console.log(snAbPara, snPrice, snSizeDecBtn, snSizeIncBtn, snSizeNum, snAvaColorCon);
 
-    /* for change sneaker */
+    /* For Change Sneaker */
     function changeSn(key){
         // console.log(key);
         // to add sn color
@@ -109,7 +109,7 @@ $(document).ready(function(){
         });
     }
 
-    /* for carousel indicator */
+    /* For Carousel Indicator */
     let ciIncWRes, 
         ciCurW = 0, ciIncW = 1,
         isStoppedCi = false;
@@ -167,7 +167,7 @@ $(document).ready(function(){
     });
     setTimeout(() => ciItems.eq(1).click(), 15500);
 
-    /* for change sneaker size number */
+    /* For Change Sneaker Size Number */
     const snMinSize = 20, snMaxSize = 40;
     function changeSnSize(sign){
         // console.log(sign);
