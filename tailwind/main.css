@@ -10,6 +10,7 @@
     --body-color: #252525;
     --active-color: #EDEA96;
     --non-active-color: #C2CCC8;
+    --ci-non-active-color: #666;
     --sn-color: #C7867A;
 }
 
@@ -64,7 +65,7 @@ body{
 
 #nav-section .nav-link:hover{
     color: var(--active-color);
-    transform: translateY(-10%);
+    transform: translateY(-5%);
 }
 
 /* End Nav Section */
@@ -121,6 +122,7 @@ body{
 }
 
 #left-container-section .carousel-indicator-con{
+    --ci-item-bf-w: 0%;
     @apply space-x-5 flex select-none relative;
     font-family: var(--brand-ff);
     font-size: 20px;
@@ -128,27 +130,29 @@ body{
 
 #left-container-section .carousel-indicator-item{
     @apply border-b-2 border-solid
-        cursor-pointer
+        opacity-80 cursor-pointer
         flex justify-center items-center
         relative;
     
     width: 40px;
     height: 40px;
 
-    color: var(--non-active-color);
-    border-bottom-color: var(--non-active-color);
+    color: var(--ci-non-active-color);
+    border-bottom-color: var(--ci-non-active-color);
 }
 
 #left-container-section .carousel-indicator-item.active{
+    @apply opacity-100;
     color: var(--active-color);
 }
 
 #left-container-section .carousel-indicator-item::before{
-    --ci-item-bf-w: 0%;
     @apply h-0.5
         absolute left-0 bottom-0 translate-y-full;
+        
     content: '';
     background-color: var(--active-color);
+    z-index: 1;
 }
 
 #left-container-section .carousel-indicator-item.active::before{
@@ -170,28 +174,28 @@ body{
 }
 
 #right-container-section .about-con .heading{
-    @apply text-white text-xl italic font-bold mb-4;
+    @apply text-white text-lg italic font-bold mb-3;
     letter-spacing: 5px;
 }
 
 #right-container-section .about-con .para{
-    @apply w-4/5 leading-7;
+    @apply w-11/12 leading-7;
     color: var(--non-active-color);
 }
 
 #right-container-section .price-con .price{
-    @apply text-3xl font-black italic;
+    @apply text-xl font-black italic;
     color: var(--sn-color);
-    text-shadow: -15px -15px 0 rgba(0, 0, 0, 0.1);
+    text-shadow: -10px -10px 0 rgba(0, 0, 0, 0.1);
 }
 
 #right-container-section .price-con .buynow-btn{
     @apply text-xs
-        font-semibold italic 
-        uppercase
+        font-semibold italic uppercase
         px-6 py-2
         border-2 border-solid rounded-full
-        mt-5;
+        mt-4
+        select-none;
     color: var(--sn-color);
     border-color: var(--sn-color);
     letter-spacing: 2.5px;
@@ -207,7 +211,7 @@ body{
 }
 
 #right-container-section .edit-con .edit-btn-con{
-    @apply ml-5 space-x-4;
+    @apply ml-5 space-x-3;
 }
 
 #right-container-section .edit-con .btn{
@@ -220,7 +224,7 @@ body{
 }
 
 #right-container-section .size-con .size-num{
-    @apply text-xl font-extrabold ;
+    @apply text-lg font-extrabold ;
 }
 
 #right-container-section footer{
@@ -332,7 +336,7 @@ body{
     /* right container section */
 
     #right-container-section{
-        @apply space-y-3;
+        @apply space-y-4;
     }
     
     #right-container-section .about-con .heading{
@@ -361,10 +365,6 @@ body{
 
     #right-container-section .edit-con .para{
         @apply text-xs;
-    }
-    
-    #right-container-section .edit-con .edit-btn-con{
-        @apply ml-5 space-x-4;
     }
     
     #right-container-section .edit-con .btn{

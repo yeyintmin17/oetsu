@@ -520,6 +520,7 @@ video {
   --body-color: #252525;
   --active-color: #EDEA96;
   --non-active-color: #C2CCC8;
+  --ci-non-active-color: #666;
   --sn-color: #C7867A;
 }
 
@@ -589,7 +590,7 @@ body{
 
 #nav-section .nav-link:hover{
   color: var(--active-color);
-  transform: translateY(-10%);
+  transform: translateY(-5%);
 }
 
 /* End Nav Section */
@@ -671,7 +672,8 @@ body{
   transform: rotate(-25deg);
 }
 
-#left-container-section .carousel-indicator-con {
+#left-container-section .carousel-indicator-con{
+  --ci-item-bf-w: 0%;
   position: relative;
   display: flex;
   -webkit-user-select: none;
@@ -698,18 +700,19 @@ body{
   justify-content: center;
   border-bottom-width: 2px;
   border-style: solid;
+  opacity: 0.8;
   width: 40px;
   height: 40px;
-  color: var(--non-active-color);
-  border-bottom-color: var(--non-active-color);
+  color: var(--ci-non-active-color);
+  border-bottom-color: var(--ci-non-active-color);
 }
 
-#left-container-section .carousel-indicator-item.active{
+#left-container-section .carousel-indicator-item.active {
+  opacity: 1;
   color: var(--active-color);
 }
 
-#left-container-section .carousel-indicator-item::before{
-  --ci-item-bf-w: 0%;
+#left-container-section .carousel-indicator-item::before {
   position: absolute;
   left: 0px;
   bottom: 0px;
@@ -718,6 +721,7 @@ body{
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
   content: '';
   background-color: var(--active-color);
+  z-index: 1;
 }
 
 #left-container-section .carousel-indicator-item.active::before{
@@ -744,8 +748,8 @@ body{
 }
 
 #right-container-section .about-con .heading {
-  margin-bottom: 1rem;
-  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.125rem;
   line-height: 1.75rem;
   font-weight: 700;
   font-style: italic;
@@ -755,22 +759,25 @@ body{
 }
 
 #right-container-section .about-con .para {
-  width: 80%;
+  width: 91.666667%;
   line-height: 1.75rem;
   color: var(--non-active-color);
 }
 
 #right-container-section .price-con .price {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
   font-weight: 900;
   font-style: italic;
   color: var(--sn-color);
-  text-shadow: -15px -15px 0 rgba(0, 0, 0, 0.1);
+  text-shadow: -10px -10px 0 rgba(0, 0, 0, 0.1);
 }
 
 #right-container-section .price-con .buynow-btn {
-  margin-top: 1.25rem;
+  margin-top: 1rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   border-radius: 9999px;
   border-width: 2px;
   border-style: solid;
@@ -811,8 +818,8 @@ body{
 
 #right-container-section .edit-con .edit-btn-con > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
-  margin-right: calc(1rem * var(--tw-space-x-reverse));
-  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+  margin-right: calc(0.75rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
 #right-container-section .edit-con .btn {
@@ -832,7 +839,7 @@ body{
 }
 
 #right-container-section .size-con .size-num {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   line-height: 1.75rem;
   font-weight: 800;
 }
@@ -971,8 +978,8 @@ body{
 
   #right-container-section > :not([hidden]) ~ :not([hidden]) {
     --tw-space-y-reverse: 0;
-    margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
-    margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
+    margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(1rem * var(--tw-space-y-reverse));
   }
 
   #right-container-section .about-con .heading {
@@ -1012,16 +1019,6 @@ body{
   #right-container-section .edit-con .para {
     font-size: 0.75rem;
     line-height: 1rem;
-  }
-
-  #right-container-section .edit-con .edit-btn-con {
-    margin-left: 1.25rem;
-  }
-
-  #right-container-section .edit-con .edit-btn-con > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-x-reverse: 0;
-    margin-right: calc(1rem * var(--tw-space-x-reverse));
-    margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
   #right-container-section .edit-con .btn{

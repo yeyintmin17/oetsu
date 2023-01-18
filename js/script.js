@@ -13,8 +13,8 @@ const snsObj = {
         src: './assets/img/sneaker2.png', price: 800, color: '#B8875B',
         about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis quae libero ullam. Fugiat deleniti nemo vel blanditiis repellat ut voluptatibus.', 
         avaColors: [
-            {color: 'orange', name: 'sneaker002'},
-            {color: 'pink', name: 'sneaker002'}
+            {color: 'cyan', name: 'sneaker002'},
+            {color: 'mediumpurple', name: 'sneaker002'}
         ]
     },
 
@@ -22,19 +22,23 @@ const snsObj = {
         src: './assets/img/sneaker3.png', price: 700, color: '#9C9674',
         about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus esse itaque accusantium voluptatibus consequatur provident animi explicabo, commodi eaque! Amet?', 
         avaColors: [
-            {color: 'cyan', name: 'sneaker003'},
-            {color: 'mediumpurple', name: 'sneaker003'}
+            {color: 'orange', name: 'sneaker003'},
+            {color: 'pink', name: 'sneaker003'}
         ]
     },
 }
 
 $(document).ready(function(){
+    const cnSec = $('#container-section');
+    // console.log(cnSec);
+
     const showSnCon = $('.show-sn-con'),
         snImg = $('.sn-img'),
+        ciCon = $('.carousel-indicator-con'),
         ciItems = $('.carousel-indicator-item'),
         ciDownArr = $('.carousel-indicator-con .down-arr');
 
-    // console.log(showSnCon, snImg, ciItems, ciDownArr);
+    // console.log(showSnCon, snImg, ciCon, ciItems, ciDownArr);
 
     const snAbPara = $('#right-container-section .about-con .para'),
         snPrice = $('#right-container-section .price-con .price'),
@@ -45,16 +49,19 @@ $(document).ready(function(){
 
     // console.log(snAbPara, snPrice, snSizeDecBtn, snSizeIncBtn, snSizeNum, snAvaColorCon);
 
+    /* for change sneaker */
     function changeSn(key){
         // console.log(key);
+        // to add sn color
         document.documentElement.style.setProperty('--sn-color', snsObj[key].color);
 
         /* right container section */
         snImg.get(0).src = snsObj[key].src;
+        snImg.get(0).alt = key;
         showSnCon.removeClass('active');
         setTimeout(() => {
             showSnCon.addClass('active');
-        }, 10);
+        }, 1);
 
         /* left container section */
         snAbPara.text(snsObj[key].about);
@@ -75,26 +82,66 @@ $(document).ready(function(){
         });
     }
 
-    function changeCI(idx){
+    /* for carousel indicator */
+    let ciIncWRes, 
+        curCiW = 0, ciIncW = 1,
+        isStoppedCi = false;
+    function changeCi(idx){
+        curCiW = 0;
+        ciCon.get(0).style.setProperty('--ci-item-bf-w', 0 + "%");
+
         const ciDownArrPos = ciItems.get(idx).offsetLeft + (ciItems.get(idx).offsetWidth / 2);
         ciDownArr.css('left', ciDownArrPos + 'px');
         ciItems.removeClass('active').eq(idx).addClass('active');
 
-        // const ciIncW = ciItems.eq(idx).innerWidth() / 5000;
-        // setInterval(() => {
-        //     ciItems.eq(idx).innerWidth(+ciIncW);
-        // }, 1);
+        if(!isStoppedCi) toRunCiW(idx);
+    }
+
+    function toRunCiW(idx){
+        console.log('run ci w');
+        clearInterval(ciIncWRes);
+
+        ciIncWRes = setInterval(() => {
+            ciCon.get(0).style.setProperty('--ci-item-bf-w', (curCiW += ciIncW) + "%");
+
+            if(curCiW === 100){
+                clearInterval(ciIncWRes);
+                let ciNextIdx = idx >= ciItems.length - 1 ? 0 : idx + 1;
+                ciItems.eq(ciNextIdx).click();
+            }
+        }, 100);
+    }
+
+    function cnSecIn(){
+        console.log('in');
+        isStoppedCi = true;
+        clearInterval(ciIncWRes);
+    }
+
+    function cnSecOut(){
+        console.log('out');
+        isStoppedCi = false;
+        toRunCiW([...ciItems].findIndex(value => value.classList.contains('active')));
+    }
+    
+    // for mobile or others
+    if(window.navigator.userAgent.toLowerCase().includes('mobile')){
+        cnSec.get(0).ontouchstart = cnSecIn;
+        cnSec.get(0).ontouchend = cnSecOut;
+    }else{
+        cnSec.hover(cnSecIn, cnSecOut);
     }
 
     ciItems.each((idx, value) => {
         $(value).bind('click', () => {
             changeSn($(value).data().sn);
-            changeCI(idx);
+            changeCi(idx);
         });
     });
     ciItems.eq(1).click();
 
-    const snMinSize = 10, snMaxSize = 40;
+    /* for change sneaker size number */
+    const snMinSize = 20, snMaxSize = 40;
     function changeSnSize(sign){
         // console.log(sign);
         const sizeNum = +snSizeNum.text() + sign;
