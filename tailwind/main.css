@@ -133,7 +133,7 @@ body{
     @apply flex flex-wrap gap-5
         select-none relative;
     font-family: var(--brand-ff);
-    font-size: 15px;
+    font-size: 20px;
 }
 
 #left-container-section .carousel-indicator-item{
@@ -142,8 +142,8 @@ body{
         flex justify-center items-center
         relative;
     
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
 
     color: var(--ci-non-active-color);
     border-bottom-color: var(--ci-non-active-color);
@@ -485,13 +485,13 @@ body.start-ani #right-container-section .ani-con{
 
     #left-container-section .carousel-indicator-con{
         @apply gap-4;
-        font-size: 10px;
+        font-size: 15px;
     }
     
     #left-container-section .carousel-indicator-item{
         @apply border-b;
-        width: 20px;
-        height: 20px;
+        width: 30px;
+        height: 30px;
     }
 
     #left-container-section .carousel-indicator-item::before{
