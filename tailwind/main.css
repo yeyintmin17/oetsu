@@ -14,7 +14,14 @@
     --sn-color: #C7867A;
 }
 
+@keyframes to-w-100-ani{
+    to{
+        width: 100%;
+    }
+}
+
 body{
+    @apply overflow-x-hidden;
     background-color: var(--body-color);
 }
 
@@ -123,9 +130,10 @@ body{
 
 #left-container-section .carousel-indicator-con{
     --ci-item-bf-w: 0%;
-    @apply space-x-5 flex select-none relative;
+    @apply flex flex-wrap gap-5
+        select-none relative;
     font-family: var(--brand-ff);
-    font-size: 20px;
+    font-size: 15px;
 }
 
 #left-container-section .carousel-indicator-item{
@@ -134,8 +142,8 @@ body{
         flex justify-center items-center
         relative;
     
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
 
     color: var(--ci-non-active-color);
     border-bottom-color: var(--ci-non-active-color);
@@ -242,6 +250,157 @@ body{
 
 /* End Container Section */
 
+/* For Intro Ani */
+
+body::before, body::after{
+    @apply fixed inset-0
+        transition-transform duration-1000 ease-linear;
+    content: '';
+    background-color: #111;
+    z-index: 100;
+}
+
+body::before{
+    clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+}
+
+body::after{
+    clip-path: polygon(100% 0%, 100% 100%, 0% 100%);
+}
+
+body.start-ani::before{
+    transform: translate(-100%, -100%);
+}
+
+body.start-ani::after{
+    transform: translate(100%, 100%);
+}
+
+.intro-brand{
+    @apply fixed left-1/2 top-1/2;
+
+    font-family: var(--brand-ff);
+    font-size: 40px;
+    color: #222;
+    letter-spacing: 4px;
+    z-index: 300;
+
+    transform: translate(-50%, -50%) scale(1);
+    animation: intro-brand-ani 0.5s linear 13.25s forwards;
+}
+
+@keyframes intro-brand-ani{
+    to{
+        transform: translate(-50%, -50%) scale(0);
+    }
+}
+
+.intro-brand::before{
+    @apply w-0 overflow-hidden absolute;
+    content: attr(data-text);
+    color: var(--active-color);
+    animation: to-w-100-ani 10s linear forwards;
+}
+
+.intro-para{
+    @apply w-full p-5
+        whitespace-nowrap
+        fixed left-0 bottom-0
+        translate-x-full;
+
+    font-family: var(--brand-ff);
+    font-size: 80px;
+    color: #333;
+    z-index: 200;
+
+    animation: intro-para-ani 10s linear forwards;
+}
+
+@keyframes intro-para-ani{
+    to{
+        transform: translateX(-200%);
+    }
+}
+
+/* for navbar sectio */
+
+#nav-section .navbar-brand,
+#nav-section .nav-item{
+    @apply opacity-0;
+}
+
+body.start-ani #nav-section .navbar-brand,
+body.start-ani #nav-section .nav-item{
+    @apply opacity-100;
+}
+
+#nav-section .navbar-brand,
+#nav-section .nav-item{
+    transition: opacity 0.5s linear;
+}
+
+#nav-section .navbar-brand{
+    transition-delay: 1s;
+}
+
+#nav-section .nav-item:first-of-type{
+    transition-delay: 1.5s;
+}
+
+#nav-section .nav-item:nth-of-type(2){
+    transition-delay: 1.75s;
+}
+
+#nav-section .nav-item:last-of-type{
+    transition-delay: 2s;
+}
+
+body .ani-con{
+    @apply opacity-0;
+    transition: all 0.5s linear;
+}
+
+/* left container section */
+
+#left-container-section .carousel-indicator-con{
+    @apply translate-x-full;
+    transition-delay: 3s;
+}
+
+/* right container section */
+
+#right-container-section .about-con,
+#right-container-section .price-con{
+    transform: translate(-100%, -100%);
+}
+
+#right-container-section .edit-con,
+#right-container-section footer{
+    transform: translate(-100%, 100%);
+}
+
+#right-container-section .about-con{
+    transition-delay: 3.25s;
+}
+
+#right-container-section .price-con{
+    transition-delay: 3.5s;
+}
+
+#right-container-section .edit-con{
+    transition-delay: 3.75s;
+}
+
+#right-container-section footer{
+    transition-delay: 4s;
+}
+
+body.start-ani #left-container-section .ani-con,
+body.start-ani #right-container-section .ani-con{
+    @apply opacity-100;
+    transform: translate(0%, 0%);
+}
+
 @media(max-width: 768px){
     /* Start Navbar Section */
 
@@ -275,6 +434,12 @@ body{
     /* right container section */
 
     /* End Container Section */
+
+    /* For Intro Ani */
+    
+    .intro-para{
+        font-size: 60px;
+    }
 }
 
 @media(max-width: 576px){
@@ -319,14 +484,14 @@ body{
     }
 
     #left-container-section .carousel-indicator-con{
-        @apply space-x-4;
-        font-size: 15px;
+        @apply gap-4;
+        font-size: 10px;
     }
     
     #left-container-section .carousel-indicator-item{
         @apply border-b;
-        width: 30px;
-        height: 30px;
+        width: 20px;
+        height: 20px;
     }
 
     #left-container-section .carousel-indicator-item::before{
@@ -378,4 +543,14 @@ body{
     }
 
     /* End Container Section */
+
+    /* For Intro Ani */
+
+    .intro-brand{
+        font-size: 30px;
+    }
+
+    .intro-para{
+        font-size: 40px;
+    }
 }

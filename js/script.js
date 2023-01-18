@@ -4,26 +4,42 @@ const snsObj = {
         about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam magni eveniet accusamus dolor exercitationem distinctio deserunt rem autem asperiores quos.', 
         avaColors: [
             {color: 'crimson', name: 'sneaker001'},
-            {color: 'seagreen', name: 'sneaker001'},
-            {color: 'cornflowerblue', name: 'sneaker001'}
         ]
     },
 
     sneaker002: {
-        src: './assets/img/sneaker2.png', price: 800, color: '#B8875B',
+        src: './assets/img/sneaker2.png', price: 880, color: '#B8875B',
         about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis quae libero ullam. Fugiat deleniti nemo vel blanditiis repellat ut voluptatibus.', 
         avaColors: [
-            {color: 'cyan', name: 'sneaker002'},
-            {color: 'mediumpurple', name: 'sneaker002'}
+            {color: 'cornflowerblue', name: 'sneaker002'},
+            {color: 'seagreen', name: 'sneaker002'},
         ]
     },
 
     sneaker003: {
-        src: './assets/img/sneaker3.png', price: 700, color: '#9C9674',
+        src: './assets/img/sneaker3.png', price: 789, color: '#9C9674',
         about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus esse itaque accusantium voluptatibus consequatur provident animi explicabo, commodi eaque! Amet?', 
         avaColors: [
-            {color: 'orange', name: 'sneaker003'},
-            {color: 'pink', name: 'sneaker003'}
+            {color: 'cyan', name: 'sneaker003'},
+        ]
+    },
+
+    sneaker004: {
+        src: './assets/img/sneaker4.png', price: 666, color: '#7C7C7F',
+        about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam magni eveniet accusamus dolor exercitationem distinctio deserunt rem autem asperiores quos.', 
+        avaColors: [
+            {color: 'yellow', name: 'sneaker004'},
+            {color: 'pink', name: 'sneaker004'},
+        ]
+    },
+
+    sneaker005: {
+        src: './assets/img/sneaker5.png', price: 543, color: '#F3B975',
+        about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis quae libero ullam. Fugiat deleniti nemo vel blanditiis repellat ut voluptatibus.', 
+        avaColors: [
+            {color: 'orange', name: 'sneaker005'},
+            {color: 'mediumpurple', name: 'sneaker005'},
+            {color: 'white', name: 'sneaker005'},
         ]
     },
 }
@@ -65,7 +81,18 @@ $(document).ready(function(){
 
         /* left container section */
         snAbPara.text(snsObj[key].about);
-        snPrice.text("$" + snsObj[key].price);
+
+        let snCurPrice = 0, snIncPrice = snsObj[key].price / 100, snIncPriceRes;
+        clearInterval(snIncPriceRes)
+        snIncPriceRes = setInterval(() => {
+            snCurPrice += snIncPrice;
+            snPrice.text("$" + Math.floor(snCurPrice));
+            
+            if(snCurPrice >= snsObj[key].price){
+                clearInterval(snIncPriceRes);
+                snPrice.text("$" + snsObj[key].price);
+            };
+        }, 10);
         
         snAvaColorCon.html('');
         snsObj[key].avaColors.forEach(value => {
@@ -84,10 +111,10 @@ $(document).ready(function(){
 
     /* for carousel indicator */
     let ciIncWRes, 
-        curCiW = 0, ciIncW = 1,
+        ciCurW = 0, ciIncW = 1,
         isStoppedCi = false;
     function changeCi(idx){
-        curCiW = 0;
+        ciCurW = 0;
         ciCon.get(0).style.setProperty('--ci-item-bf-w', 0 + "%");
 
         const ciDownArrPos = ciItems.get(idx).offsetLeft + (ciItems.get(idx).offsetWidth / 2);
@@ -98,13 +125,13 @@ $(document).ready(function(){
     }
 
     function toRunCiW(idx){
-        console.log('run ci w');
+        // console.log('run ci w');
         clearInterval(ciIncWRes);
 
         ciIncWRes = setInterval(() => {
-            ciCon.get(0).style.setProperty('--ci-item-bf-w', (curCiW += ciIncW) + "%");
+            ciCon.get(0).style.setProperty('--ci-item-bf-w', (ciCurW += ciIncW) + "%");
 
-            if(curCiW === 100){
+            if(ciCurW === 100){
                 clearInterval(ciIncWRes);
                 let ciNextIdx = idx >= ciItems.length - 1 ? 0 : idx + 1;
                 ciItems.eq(ciNextIdx).click();
@@ -113,13 +140,13 @@ $(document).ready(function(){
     }
 
     function cnSecIn(){
-        console.log('in');
+        // console.log('in');
         isStoppedCi = true;
         clearInterval(ciIncWRes);
     }
 
     function cnSecOut(){
-        console.log('out');
+        // console.log('out');
         isStoppedCi = false;
         toRunCiW([...ciItems].findIndex(value => value.classList.contains('active')));
     }
@@ -138,7 +165,7 @@ $(document).ready(function(){
             changeCi(idx);
         });
     });
-    ciItems.eq(1).click();
+    setTimeout(() => ciItems.eq(1).click(), 15500);
 
     /* for change sneaker size number */
     const snMinSize = 20, snMaxSize = 40;
@@ -149,4 +176,7 @@ $(document).ready(function(){
     }
     snSizeDecBtn.click(() => changeSnSize(-1));
     snSizeIncBtn.click(() => changeSnSize(+1));
+
+    /* For Intro Ani */
+    setTimeout(() => $('body').addClass('start-ani'), 13000);
 });
