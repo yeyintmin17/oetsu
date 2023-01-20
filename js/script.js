@@ -66,7 +66,7 @@ $(document).ready(function(){
     // console.log(snAbPara, snPrice, snSizeDecBtn, snSizeIncBtn, snSizeNum, snAvaColorCon);
 
     /* For Change Sneaker */
-    function changeSn(key){
+    let changeSn = async (key) => {
         // console.log(key);
         // to add sn color
         document.documentElement.style.setProperty('--sn-color', snsObj[key].color);
@@ -74,10 +74,9 @@ $(document).ready(function(){
         /* right container section */
         snImg.get(0).src = snsObj[key].src;
         snImg.get(0).alt = key;
-        showSnCon.removeClass('active');
-        setTimeout(() => {
-            showSnCon.addClass('active');
-        }, 1);
+
+        await showSnCon.removeClass('active');
+        showSnCon.addClass('active');
 
         /* left container section */
         snAbPara.text(snsObj[key].about);
@@ -131,8 +130,10 @@ $(document).ready(function(){
         ciIncWRes = setInterval(() => {
             ciCon.get(0).style.setProperty('--ci-item-bf-w', (ciCurW += ciIncW) + "%");
 
-            if(ciCurW === 100){
+            if(ciCurW >= 100){
                 clearInterval(ciIncWRes);
+                ciCon.get(0).style.setProperty('--ci-item-bf-w', "100%");
+
                 let ciNextIdx = idx >= ciItems.length - 1 ? 0 : idx + 1;
                 ciItems.eq(ciNextIdx).click();
             }

@@ -322,6 +322,10 @@ body.start-ani::after{
     }
 }
 
+body.start-ani .intro-para{
+    @apply hidden;
+}
+
 /* for navbar section */
 
 #nav-section .navbar-brand,
@@ -370,13 +374,15 @@ body .ani-con{
 /* right container section */
 
 #right-container-section .about-con,
-#right-container-section .price-con{
-    transform: translate(-100%, -100%);
+#right-container-section .edit-con{
+    @apply origin-left;
+    transform: scale(0) translate(-100%, -100%);
 }
 
-#right-container-section .edit-con,
+#right-container-section .price-con,
 #right-container-section footer{
-    transform: translate(-100%, 100%);
+    @apply origin-right;
+    transform: scale(0) translate(100%, -100%);
 }
 
 #right-container-section .about-con{
@@ -398,7 +404,7 @@ body .ani-con{
 body.start-ani #left-container-section .ani-con,
 body.start-ani #right-container-section .ani-con{
     @apply opacity-100;
-    transform: translate(0%, 0%);
+    transform: scale(1) translate(0%, 0%);
 }
 
 @media(max-width: 768px){
