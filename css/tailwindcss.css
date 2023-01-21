@@ -607,13 +607,12 @@ body {
 #container-section {
   display: flex;
   flex-direction: row-reverse;
+  align-items: center;
   overflow: hidden;
   min-height: calc(100vh - 80px);
 }
 
 #container-section > * {
-  margin-top: auto;
-  margin-bottom: auto;
   display: flex;
   flex-direction: column;
 }
@@ -1052,18 +1051,17 @@ body.start-ani #right-container-section .ani-con {
   /* Start Container Section */
 
   #container-section {
-    display: grid;
-    place-items: center;
+    flex-direction: column;
+    justify-content: center;
   }
 
   #container-section > :not([hidden]) ~ :not([hidden]) {
     --tw-space-y-reverse: 0;
-    margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
-    margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
+    margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
   }
 
   #container-section > * {
-    margin: 0px;
     width: 100%;
   }
 
@@ -1150,8 +1148,8 @@ body.start-ani #right-container-section .ani-con {
 
   #right-container-section > :not([hidden]) ~ :not([hidden]) {
     --tw-space-y-reverse: 0;
-    margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
-    margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+    margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
   }
 
   #right-container-section .about-con .heading {

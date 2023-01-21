@@ -80,12 +80,12 @@ body{
 /* Start Container Section */
 
 #container-section{
-    @apply flex flex-row-reverse overflow-hidden;
+    @apply flex flex-row-reverse items-center overflow-hidden;
     min-height: calc(100vh - 80px);
 }
 
 #container-section > *{
-    @apply space-y-5 my-auto
+    @apply space-y-5 
         flex flex-col;
 }
 
@@ -420,11 +420,11 @@ body.start-ani #right-container-section .ani-con{
     /* Start Container Section */
 
     #container-section{
-        @apply space-y-1 grid place-items-center;
+        @apply flex-col justify-center space-y-2;
     }
 
     #container-section > *{
-        @apply w-full m-0;
+        @apply w-full;
     }
 
     /* left container section */
@@ -507,7 +507,7 @@ body.start-ani #right-container-section .ani-con{
     /* right container section */
 
     #right-container-section{
-        @apply space-y-4;
+        @apply space-y-3;
     }
     
     #right-container-section .about-con .heading{
