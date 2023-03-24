@@ -75,7 +75,7 @@ $(document).ready(function(){
         snImg.get(0).src = snsObj[key].src;
         snImg.get(0).alt = key;
 
-        await showSnCon.removeClass('active');
+        await Promise.resolve(showSnCon.removeClass('active'));
         showSnCon.addClass('active');
 
         /* left container section */
@@ -177,6 +177,9 @@ $(document).ready(function(){
     }
     snSizeDecBtn.click(() => changeSnSize(-1));
     snSizeIncBtn.click(() => changeSnSize(+1));
+
+    /* For Copyright Year */
+    $("#copyright-year").text(new Date().getUTCFullYear());
 
     /* For Intro Ani */
     setTimeout(() => $('body').addClass('start-ani'), 13000);
