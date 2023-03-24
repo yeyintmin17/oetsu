@@ -68,16 +68,17 @@ $(document).ready(function(){
     /* For Change Sneaker */
     let changeSn = async (key) => {
         // console.log(key);
+
         // to add sn color
         document.documentElement.style.setProperty('--sn-color', snsObj[key].color);
 
         /* right container section */
         snImg.get(0).src = snsObj[key].src;
         snImg.get(0).alt = key;
-
-        await Promise.resolve(showSnCon.removeClass('active'));
-        showSnCon.addClass('active');
-
+        
+        showSnCon.removeClass('active');
+        requestAnimationFrame(() => showSnCon.addClass('active'));
+        
         /* left container section */
         snAbPara.text(snsObj[key].about);
 
